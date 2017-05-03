@@ -1,6 +1,6 @@
 import React from 'react';
 import {WoodItem} from './WoodItem';
-import {Grid, Row, Col} from 'react-bootstrap';
+import { Row, Col} from 'react-bootstrap';
 
 
 export class WoodsPanel extends React.Component {

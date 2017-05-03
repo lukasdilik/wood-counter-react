@@ -1,6 +1,6 @@
 import React from 'react';
 import {SizeItem} from './SizeItem';
-import {Grid, Row, Col} from 'react-bootstrap';
+import {Row, Col} from 'react-bootstrap';
 
 
 export class SizePanel extends React.Component{

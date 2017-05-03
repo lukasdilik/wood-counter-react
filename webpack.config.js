@@ -1,5 +1,14 @@
 var path = require('path');
 var webpack = require('webpack');
+var build = require('webpack-build');
+
+
+build({
+    config: 'webpack.config.js',
+    watch: true
+}, function(err, data) {
+    // ...
+});
 
 module.exports = {
     entry: './src/js/App.js',
@@ -28,7 +37,7 @@ module.exports = {
                 loader: 'babel',
                 query: {
                     cacheDirectory: true,
-                    presets: ['es2015', 'react','react-hmre'],
+                    presets: ['es2015', 'react'],
                   /*  plugins: [
                         "react-hot-loader/babel"
                         // Enables React code to work with HMR.

@@ -1,18 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {WoodsPanel} from './parts/WoodsPanel';
 import {SizePanel} from './parts/SizePanel';
-import FileReaderInput from 'react-file-reader-input';
-
-var rest = require('rest-js');
-
-const endpoint = 'http://localhost:8080'
-
-var restApi = rest(endpoint, {
-    crossDomain: false,
-    defaultFormat: ''
-});
-
 
 export class App extends React.Component {
     constructor() {
@@ -22,7 +10,6 @@ export class App extends React.Component {
         this.onClickSize = this.onClickSize.bind(this);
         this.onClickReset = this.onClickReset.bind(this);
         this.prepareWoodsList = this.prepareWoodsList.bind(this);
-        this.onClickSave = this.onClickSave.bind(this);
         this.state = {
             woods : null,
             selectedWood : null,
@@ -33,12 +20,6 @@ export class App extends React.Component {
 
     }
 
-    onClickSave(){
-        var map = {params : {wood : "hk", count : "2"}};
-        restApi.post("/saveCount",{ data : {map} /*{params : this.state.map}*/},function(error,response){
-           console.log(response);
-        });
-    }
     onClickReset(){
         var map = this.state.woodsMap;
 
@@ -72,33 +53,30 @@ export class App extends React.Component {
 
     loadFromServer() {
         var self = this;
-        var map = new Object();
-        restApi.get("/configuration", {headers: {Accept: 'application/schema+json'}}, function (error, response) {
-            var data;
-            if(response != null) {
-                data = response;
-                console.log(data);
-            }else{
-                data = require('../../data.json');
-                console.log(data);
+        var map = {};
+        var data = {
+            "woods": [ "BK", "DB", "HB", "JS", "AG", "OS", "CS", "JP", "JH", "JM", "LP", "BR", "BO", "SC", "SM", "BC" ],
+            "range": {
+            "from": 20,
+                "to": 150,
+                "step": 10
             }
+        }
+        data.woods.forEach(function (element) {
+            map[element] = {};
 
-            data.woods.forEach(function (element) {
-                map[element] = new Object();
+            var start = data.range.from;
+            var end = data.range.to;
+            var step = data.range.step;
+            for (var i = start; i <= end; i = i + step) {
+                map[element][i] = 0;
+            }
+        })
 
-                var start = data.range.from;
-                var end = data.range.to;
-                var step = data.range.step;
-                for (var i = start; i <= end; i = i + step) {
-                    map[element][i] = 0;
-                }
-            })
-
-            self.setState({
-                woods: data,
-                woodsMap: map
-            });
-        });
+        self.state = {
+            woods: data,
+            woodsMap: map
+        };
     }
 
     prepareWoodsList(){
