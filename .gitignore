@@ -1,5 +1,5 @@
 .gradle
-/build/
+/public/
 /node_modules/
 !gradle/wrapper/gradle-wrapper.jar
 
@@ -19,7 +19,7 @@
 
 ### NetBeans ###
 nbproject/private/
-build/
+public/
 nbbuild/
 dist/
 nbdist/
