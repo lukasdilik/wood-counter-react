@@ -57,9 +57,9 @@ export class App extends React.Component {
         var data = {
             "woods": [ "BK", "DB", "HB", "JS", "AG", "OS", "CS", "JP", "JH", "JM", "LP", "BR", "BO", "SC", "SM", "BC" ],
             "range": {
-            "from": 20,
-                "to": 150,
-                "step": 10
+            "from": 10,
+                "to": 102,
+                "step": 4
             }
         }
         data.woods.forEach(function (element) {
