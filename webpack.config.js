@@ -1,14 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-var build = require('webpack-build');
-
-
-build({
-    config: 'webpack.config.js',
-    watch: true
-}, function(err, data) {
-    // ...
-});
 
 module.exports = {
     entry: './src/js/App.js',

@@ -1,5 +1,4 @@
 .gradle
-/public/
 /node_modules/
 !gradle/wrapper/gradle-wrapper.jar
 
@@ -24,3 +23,4 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+build/
